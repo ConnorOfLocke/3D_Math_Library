@@ -120,7 +120,7 @@ vec3 colour::getHSL()
 	if (b > maxVal)
 		maxVal = b;
 
-	int diffVal = maxVal - minVal;
+	int diffVal =(int)( maxVal - minVal);
 
 	//LIGHTNESS
 	L = ( maxVal + minVal ) / 2;

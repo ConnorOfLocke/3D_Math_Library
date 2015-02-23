@@ -137,7 +137,8 @@ mat4 mat4::getRotationZMatrix(float angle)
 
 mat4 mat4::getOrthographic(float left, float right, float bottom, float top, float near, float far)
 {
-
+	if (right - left == 0 || top - bottom == 0 || far - near == 0)
+		return mat4::Zero();
 
 	return mat4( 2.0f/(right-left),			   0,							 0,								0,
 				 0,								2.0f/(top-bottom),			 0,								0,
@@ -147,6 +148,30 @@ mat4 mat4::getOrthographic(float left, float right, float bottom, float top, flo
 
 }	
 
+mat4 mat4::getProjection(float fovy, float aspect, float zNear, float zFar)
+{
+	if (zNear * tanf(fovy / 2) == 0)
+		return mat4::Zero();
+
+	float S = 1.0f / ( zNear * tanf(fovy /2.0f));
+
+	return mat4(aspect * S, 0,	0,								0,
+				0,			S,	0,								0,
+				0,			0,	-(zFar + zNear)/(zFar - zNear),	2*(zFar*zNear),
+				0,			0,	-1,								0);
+}
+
+mat4 mat4::LookAt(vec3 from, vec3 to, vec3 up)
+{
+	vec3 zAxis = vec3::Normalize(from - to);
+	vec3 xAxis = vec3::Normalize(up.Cross(zAxis));
+	vec3 yAxis = vec3::Cross(zAxis, xAxis);
+
+	return mat4(xAxis.x, xAxis.y, xAxis.z,  -vec3::Dot(xAxis, from),
+				yAxis.x, yAxis.y, yAxis.z,	-vec3::Dot(yAxis, from),
+				zAxis.x, zAxis.y, zAxis.z,	-vec3::Dot(zAxis, from),
+				0,		 0,		  0,		1);
+}
 
 mat4 mat4::getScale(vec3 Scale)
 {

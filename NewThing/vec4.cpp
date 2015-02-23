@@ -7,6 +7,11 @@ vec4::vec4()
 	x = y = z = 0;
 }
 
+vec4::vec4(float a_all)
+	: x(a_all), y(a_all), z(a_all), w(a_all)
+{
+}
+
 vec4::vec4(float a_x, float a_y, float a_z, float a_w)
 	: x(a_x), y(a_y), z(a_z), w(a_w)
 {
@@ -65,9 +70,19 @@ vec4 vec4::getNormalised()
 		return *this;
 }
 
+vec4 vec4::Normalize(vec4 input)
+{
+	return input.getNormalised();
+}
+
 float vec4::Dot(vec4 rhs)
 {
 	return x * rhs.x + y * rhs.y + z * rhs.z + w * rhs.w;
+}
+
+float vec4::Dot(vec4 lhs, vec4 rhs)
+{
+	return lhs.Dot(rhs);
 }
 
 vec4 vec4::Lerp(vec4 Origin, vec4 Destination, float t)

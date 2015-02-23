@@ -6,6 +6,12 @@ vec3::vec3()
 	x = y = z = 0;
 }
 
+vec3::vec3(float a_all)
+	: x(a_all), y(a_all), z(a_all)
+{
+}
+
+
 vec3::vec3(float a_x, float a_y, float a_z)
 	: x(a_x), y(a_y), z(a_z)
 {
@@ -41,13 +47,25 @@ float vec3::Magnitude()
 	return sqrtf(x*x + y*y * z*z);
 }
 
-vec3 vec3::getNormalised()
+vec3 vec3::getNormalized()
 {
 	float Length = Magnitude();
 	if (Length != 0)
 		return vec3( x/ Length, y / Length, z / Length);
 	else
 		return *this;
+}
+
+void vec3::Normalize()
+{
+	float Length = Magnitude();
+	if (Length != 0)
+		*this = vec3(x/Length, y / Length, z / Length);
+}
+
+vec3 vec3::Normalize(vec3 input)
+{
+	return input.getNormalized();
 }
 
 float vec3::Dot(vec3 rhs)
@@ -60,6 +78,16 @@ vec3 vec3::Cross(vec3 rhs)
 	return vec3( y * rhs.z - z * rhs.y,
 				 z * rhs.x - x * rhs.z,
 				 x * rhs.y - y * rhs.x);
+}
+
+float vec3::Dot(vec3 lhs, vec3 rhs)
+{
+	return lhs.Dot(rhs);
+}
+
+vec3 vec3::Cross(vec3 lhs, vec3 rhs)
+{
+	return lhs.Cross(rhs);
 }
 
 vec3 vec3::One()

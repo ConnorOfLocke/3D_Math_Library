@@ -16,6 +16,7 @@ public:
 
 	//contructors
 	vec4();
+	vec4(float a_all);
 	vec4(float a_x, float a_y, float a_z, float a_w);
 	vec4(float a_x, float a_y, float a_z);
 	vec4(vec3 a_v, float a_w);
@@ -29,7 +30,10 @@ public:
 	float Magnitude();
 	vec4 getNormalised();
 
+	static vec4 Normalize(vec4 input);
+
 	float Dot(vec4 rhs);
+	static float Dot(vec4 lhs, vec4 rhs);
 
 	static vec4 One();
 	static vec4 Zero();

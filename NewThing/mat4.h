@@ -38,6 +38,8 @@ public:
 	static mat4 getRotationZMatrix(float angle);
 
 	static mat4 getOrthographic(float left, float right, float bottom, float top, float near, float far);
+	static mat4 getProjection( float fovy, float aspect, float zNear, float zFar);
+	static mat4 LookAt(vec3 from, vec3 to, vec3 up);
 
 	static mat4 getScale(vec3 Scale);
 	static mat4 getTranslation(vec3 Position);

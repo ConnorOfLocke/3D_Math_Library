@@ -130,9 +130,10 @@ int main()
 	}
 
 	//creates a mighty curious triangle
-	OpenGlData George = ExampleTraingle(	vec4(1024 / 2.0,		  720 / 2.0 + 100.0f, 1.0f,	1.0f),
-											vec4(1024 / 2.0 - 160.0f, 720 / 2.0 - 80.0f, -1.0f, 1.0f),
-											vec4(1024 / 2.0 + 160.0f, 720 / 2.0 - 80.0f, -1.0f, 1.0f));
+	OpenGlData George = ExampleTraingle(	vec4(0, 1, -1, 0),	//vec4(1024 / 2.0,		  720 / 2.0 + 100.0f, 1.0f,	1.0f),
+											vec4(1 ,0, 0, 1),	//vec4(1024 / 2.0 - 160.0f, 720 / 2.0 - 80.0f, -1.0f, 1.0f),
+											vec4(-1, 0, 0, 1));	//vec4(1024 / 2.0 + 160.0f, 720 / 2.0 - 80.0f, -1.0f, 1.0f));
+											
 
 	//loads in our shaders
 	GLuint uiProgramFlat = CreateProgram("VertexShader.glsl", "FlatFragmentShader.glsl");

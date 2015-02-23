@@ -14,6 +14,7 @@ public:
 	float z;
 
 	vec3();
+	vec3(float a_all);
 	vec3(float a_x, float a_y, float a_z);
 	vec3(float a_x, float a_y);
 
@@ -24,10 +25,16 @@ public:
 	vec3& operator = (vec3& other);
 
 	float Magnitude();
-	vec3 getNormalised();
+	vec3 getNormalized();
+	void Normalize();
+
+	static vec3 Normalize(vec3 input);
 
 	float Dot(vec3 rhs);
 	vec3 Cross(vec3 rhs);
+
+	static float Dot(vec3 lhs, vec3 rhs);
+	static vec3 Cross(vec3 lhs, vec3 rhs);
 
 	static vec3 One();
 	static vec3 Zero();
